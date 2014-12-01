@@ -11,6 +11,12 @@ numCircles = 20
 DISTANCE = 60
 SCREEN_DIAG = 48# 14.1` * 2.52
 
+# Stimulus presentation parameters
+NUM_TRIALS = 20 # total number of trials
+BLANK_TIME = 500 #in ms, blank screen before each set is displayed
+DISPLAY_TIME = 1500 #in ms, duration of each stimulus display
+
+
 def instruct(drawer, text):
     # display instructions onscreen, then wait for space or return to continue.
     drawer.screenFill((COLOR))
@@ -128,14 +134,14 @@ def example():
     t = pygame.time.get_ticks()
     passed = pygame.time.get_ticks() - t
     drawCircles(drawer, 4)
-    pygame.time.wait(500 - passed)
+    pygame.time.wait(BLANK_TIME - passed)
     pygame.display.flip()
-    pygame.time.wait(1500)
+    pygame.time.wait(DISPLAY_TIME)
     sampleMean = log10(5)
     drawCircles(drawer, 4)
-    pygame.time.wait(500 - passed)
+    pygame.time.wait(BLANK_TIME - passed)
     pygame.display.flip()
-    pygame.time.wait(1500 - passed)
+    pygame.time.wait(DISPLAY_TIME - passed)
     drawer.screenFill((COLOR))
     drawer.screenFlip()
 
@@ -147,13 +153,13 @@ def runTrial(setSizeCondition): ## SS changed
     trials = [1,1,2,3] 
     trialType = random.choice(trials)
     setSize1 = drawCircles(drawer, 1)
-    pygame.time.wait(500 - passed)
+    pygame.time.wait(BLANK_TIME - passed)
     pygame.display.flip()
-    pygame.time.wait(1500)
+    pygame.time.wait(DISPLAY_TIME)
     setSize2 = drawCircles(drawer, trialType)
-    pygame.time.wait(500 - passed)
+    pygame.time.wait(BLANK_TIME - passed)
     pygame.display.flip()
-    pygame.time.wait(1500 - passed)
+    pygame.time.wait(DISPLAY_TIME - passed)
     drawer.screenFill((COLOR))
     drawer.screenFlip()
     answer = askQuestion()
@@ -224,7 +230,7 @@ try:
                       'Please tell the experimenter whether or not you understood the what was meant by "mean area"',
                       '',
                       'Start the experiment by pressing "SPACE" or "ENTER"'])
-    while True and trial <= 20: # SS changed 500
+    while True and trial <= NUM_TRIALS: # SS changed 500
         runTrial(setSizeCondition) ## SS CHANGED
     f.close()
     
