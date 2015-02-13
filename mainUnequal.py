@@ -60,34 +60,14 @@ def buildRect(drawer, gaussType):
     for r in range(0,setSize): ## SS changed
         x = random.randint(0, dispSize[0])
         y = random.randint(0, dispSize[1])
-        if gaussType == 1:
-            area = 10**random.gauss(meanS1, sigma)
-            radiusDeg = float(sqrt(area)/pi)
-            radiusCm = DISTANCE*tan(radiusDeg*(pi/180))
-            radiusPix = radiusCm*pix2cm
-            rectangle = pygame.Rect(x, y, 2*radiusPix, 2*radiusPix)
-            rectangles.append(rectangle)
-        if gaussType == 2:
-            area = 10**random.gauss(meanS2, sigma)
-            radiusDeg = float(sqrt(area)/pi)
-            radiusCm = DISTANCE*tan(radiusDeg*(pi/180))
-            radiusPix = radiusCm*pix2cm
-            rectangle = pygame.Rect(x, y, 2*radiusPix, 2*radiusPix)
-            rectangles.append(rectangle)
-        if gaussType == 3:
-            area = 10**random.gauss(meanS3, sigma)
-            radiusDeg = float(sqrt(area)/pi)
-            radiusCm = DISTANCE*tan(radiusDeg*(pi/180))
-            radiusPix = radiusCm*pix2cm
-            rectangle = pygame.Rect(x, y, 2*radiusPix, 2*radiusPix)
-            rectangles.append(rectangle)
-        if gaussType == 4:    
-            area = 10**random.gauss(sampleMean, sigma)
-            radiusDeg = float(sqrt(area)/pi)
-            radiusCm = DISTANCE*tan(radiusDeg*(pi/180))
-            radiusPix = radiusCm*pix2cm
-            rectangle = pygame.Rect(x, y, 2*radiusPix, 2*radiusPix)
-            rectangles.append(rectangle)
+        whichMeanToUse = [meanS1, meanS2, meanS3, sampleMean]
+        area = 10**random.gauss(whichMeanToUse[gaussType-1], sigma)  # get the right mean for this gaussType
+        radiusDeg = float(sqrt(area)/pi)
+        radiusCm = DISTANCE*tan(radiusDeg*(pi/180))
+        radiusPix = radiusCm*pix2cm
+        rectangle = pygame.Rect(x, y, 2*radiusPix, 2*radiusPix)
+        rectangles.append(rectangle)
+
     while not checkOverlap(rectangles) and count <= 1500:
         count += 1
         for rectangle in rectangles:
