@@ -117,7 +117,7 @@ def displayText(text, top):
     rect.top = top # identify this rectangles top position as top instead of specific (0,0)
     drawer.screen.fill(COLOR, rect)
     font = pygame.font.Font(None, 36) # font - namespace / Font - class
-    textRect = font.render(text, 1, (255, 255, 255)) # rectengular bitmap for text
+    textRect = font.render(text, 1, (255, 255, 255)) # rectangular bitmap for text
     textpos = textRect.get_rect(centerx = drawer.screen.get_rect().centerx) # where the text rectangle will be flipped --- textRect.get_rect() returns the size of the bitmap
     textpos.top = top # set the text bitmap at the same level as rect
     drawer.screen.blit(textRect, textpos) # Block image transfer (combines 2 bitmaps : screen and textRect)  (textRect: bitmap, textpos: position for the)
@@ -203,7 +203,7 @@ try:
 
     drawer = Experimenter()
     instruct(drawer, ['On every trial you will be presented with two displays of circles',
-                      'Fist you will see one set and then you will see another',
+                      'First you will see one set and then you will see another',
                       'You will then be asked if those two displays on average have the same or different MEAN AREAS',
                       'Press "S" for Same and "D" for Different',
                       '',
