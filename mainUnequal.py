@@ -109,21 +109,6 @@ def askQuestion():
     pygame.event.clear()
     return processInput()
 
-def example():
-    global sampleMean
-    t = pygame.time.get_ticks()
-    passed = pygame.time.get_ticks() - t
-    drawCircles(drawer, 4)
-    pygame.time.wait(BLANK_TIME - passed)
-    pygame.display.flip()
-    pygame.time.wait(DISPLAY_TIME)
-    sampleMean = log10(5)
-    drawCircles(drawer, 4)
-    pygame.time.wait(BLANK_TIME - passed)
-    pygame.display.flip()
-    pygame.time.wait(DISPLAY_TIME - passed)
-    drawer.screenFill((COLOR))
-    drawer.screenFlip()
 
 def runTrial(setSizeCondition): ## SS changed
     global trial
@@ -200,7 +185,6 @@ try:
     trial = 1
     f = open("datafiles/" + subject + ".txt", 'w')
     f.write("Trial, TrialType, SetSize1, SetSize2, 1st Mean, 2nd Mean, Correct\n") # SS changed
-    example()
     instruct(drawer, ['Now the actual experiment:',
                       'What you just saw was an exaggerated example to illustate the point and in the experiment the difference will not be as apparent',
                       '',
