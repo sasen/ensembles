@@ -198,7 +198,7 @@ try:
     sigma = 0.075
     sampleMean = 0.3
     trial = 1
-    f = open(subject + ".txt", 'w')
+    f = open("datafiles/" + subject + ".txt", 'w')
     f.write("Trial, TrialType, SetSize1, SetSize2, 1st Mean, 2nd Mean, Correct\n") # SS changed
     example()
     instruct(drawer, ['Now the actual experiment:',
